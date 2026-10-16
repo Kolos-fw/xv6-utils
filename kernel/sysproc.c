@@ -13,4 +13,19 @@ sys_getppid(void){
   release(&wait_lock);
   return ppid;
 }
+
+uint64
+count_children(void){
+  struct proc *p;
+  struct proc *me = myproc();
+  int count = 0;
+  acquire(&wait_lock);
+  for(p = proc; p < &proc[NPROC]; p++){
+    if (p->parent == me){
+      count++;
+    }
+  }
+  release(&wait_lock);
+  return count;
+}
 ```

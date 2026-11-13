@@ -28,4 +28,25 @@ count_children(void){
   release(&wait_lock);
   return count;
 }
+
+uint64
+sys_vmprint(void)
+{
+vmprint(myproc()->pagetable);
+return 0;
+}
+
+uint64
+sys_vmperms(void)
+{
+vmperms(myproc()->pagetable);
+return 0;
+}
+
+uint64
+sys_vmstat(void)
+{
+vmstat(myproc()->pagetable);
+return 0;
+}
 ```
